@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Clientes</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Clientes - Listagem">
+			<p:dataTable emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{clienteBean.clientes}" var="cliente"
+				rows="5">
+				<f:facet name="header">
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+				</f:facet>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{cliente.pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{cliente.pessoa.cpf}" />
+				</p:column>
+
+				<p:column headerText="Data de Cadastro">
+					<h:outputText value="#{cliente.dataCadastro}">
+						<f:convertDateTime locale="pt_BR" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Liberado">
+					<p:selectBooleanCheckbox value="#{cliente.liberado}"
+						disabled="true" />
+				</p:column>
+
+				<p:column headerText="Opções">
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+	<p:dialog header="Clientes - Cadastro" widgetVar="dialogo"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Pessoa:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data de Cadastro:" />
+				<p:calendar />
+
+				<p:outputLabel value="Liberado:" />
+				<p:selectBooleanCheckbox />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
