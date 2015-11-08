@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Vendas</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<h:form id="formulario">
+		<p:panel header="Funcionário">
+			<h:panelGrid id="painelFun" columns="5">
+				<p:outputLabel value="CPF:" for="cpfFun" />
+				<p:inputMask id="cpfFun" mask="999.999.999-99" size="10"
+					required="true"
+					requiredMessage="O campo CPF do Funcionário é obrigatório"
+					value="#{vendaBean.funcionario.pessoa.cpf}" />
+
+				<p:outputLabel value="Nome" for="nomeFun" />
+				<p:inputText id="nomeFun" size="50" readonly="true"
+					value="#{vendaBean.venda.funcionario.pessoa.nome}" />
+
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{vendaBean.buscarFuncionario}"
+					update=":mensagem :formulario:painelFun"
+					process="@this :formulario:cpfFun" />
+			</h:panelGrid>
+		</p:panel>
+		
+		<p:panel header="Cliente">
+			<h:panelGrid id="painelCli" columns="5">
+				<p:outputLabel value="CPF:" for="cpfCli" />
+				<p:inputMask id="cpfCli" mask="999.999.999-99" size="10"
+					required="true"
+					requiredMessage="O campo CPF do Cliente é obrigatório"
+					value="#{vendaBean.cliente.pessoa.cpf}" />
+
+				<p:outputLabel value="Nome" for="nomeCli" />
+				<p:inputText id="nomeCli" size="50" readonly="true"
+					value="#{vendaBean.venda.cliente.pessoa.nome}" />
+
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{vendaBean.buscarCliente}"
+					update=":mensagem :formulario:painelCli"
+					process="@this :formulario:cpfCli" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
