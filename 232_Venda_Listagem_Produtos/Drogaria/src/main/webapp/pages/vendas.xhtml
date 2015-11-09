@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Vendas</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<h:form>
+		<p:panel header="Produtos">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{vendaBean.produtos}" var="produto"
+				rows="3">
+
+				<p:column headerText="Descrição" filterBy="#{produto.descricao}"
+					sortBy="#{produto.descricao}">
+					<h:outputText value="#{produto.descricao}" />
+				</p:column>
+
+				<p:column headerText="Quantidade" sortBy="#{produto.quantidade}">
+					<h:outputText value="#{produto.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Preço" sortBy="#{produto.preco}">
+					<h:outputText value="#{produto.preco}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Fabricante"
+					filterBy="#{produto.fabricante.descricao}"
+					sortBy="#{produto.fabricante.descricao}">
+					<h:outputText value="#{produto.fabricante.descricao}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-plus" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+
+		<p:panel header="Cesta de Compras">
+		</p:panel>
+
+		<p:panel header="Total">
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
