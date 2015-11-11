@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SiGDro</title>
+	<h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div id="geral">
+			<div id="topo" class="divTopo">
+				<p:graphicImage library="images" name="banner.jpg"
+					styleClass="imagemCentralizada" />
+			</div>
+
+			<div id="cabecalho">
+				<p:menubar>
+					<p:submenu label="Arquivo">
+						<p:menuitem value="Sair" />
+					</p:submenu>
+
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Estado" />
+						<p:menuitem value="Cidade" />
+						<p:menuitem value="Fabricante" />
+						<p:menuitem value="Produto" />
+						<p:menuitem value="Pessoa" />
+						<p:menuitem value="Cliente" />
+						<p:menuitem value="Funcionário" />
+					</p:submenu>
+
+					<p:submenu label="Movimentações">
+						<p:menuitem value="Venda" />
+					</p:submenu>
+
+					<p:submenu label="Ajuda">
+						<p:menuitem value="Sobre" />
+					</p:submenu>
+				</p:menubar>
+			</div>
+
+			<div id="conteudo"></div>
+		</div>
+	</h:form>
+</h:body>
+</html>
