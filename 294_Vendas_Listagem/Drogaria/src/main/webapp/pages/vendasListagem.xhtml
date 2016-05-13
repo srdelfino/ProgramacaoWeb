@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+	
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewAction action="#{vendaBean.listar}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Vendas - Listagem">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{vendaBean.vendas}" var="venda" rows="5"
+					paginatorPosition="top">
+
+					<p:column headerText="Horário" sortBy="#{venda.horario}">
+						<h:outputText value="#{venda.horario}">
+							<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Preço Total" sortBy="#{venda.precoTotal}">
+						<h:outputText value="#{venda.precoTotal}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Cliente"
+						filterBy="#{venda.cliente.pessoa.nome}"
+						sortBy="#{venda.cliente.pessoa.nome}">
+						<h:outputText value="#{venda.cliente.pessoa.nome}" />
+					</p:column>
+					
+					<p:column headerText="Funcionário"
+						filterBy="#{venda.funcionario.pessoa.nome}"
+						sortBy="#{venda.funcionario.pessoa.nome}">
+						<h:outputText value="#{venda.funcionario.pessoa.nome}" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
