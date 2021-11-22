@@ -21,8 +21,8 @@ public class FabricanteDAOTest {
 	@Test
 	@Ignore
 	public void listar() {
-		FabricanteDAO FabricanteDAO = new FabricanteDAO();
-		List<Fabricante> resultado = FabricanteDAO.listar();
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		List<Fabricante> resultado = fabricanteDAO.listar();
 
 		System.out.println("Total de Registros Encontrados: " + resultado.size());
 
